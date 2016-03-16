@@ -28,14 +28,14 @@ export default class DetailsShow extends React.Component {
         }
 
         return (
-            <div className="detailsShow">
-                <div className="allusion">
-                    <span>{this.state.allusion.id}</span>
-                    <span>{" --评分:"}</span>
-                    <span>{this.state.allusion.probability.toFixed(2)}</span>
+            <div style={styles.detailsShow}>
+                <div style={styles.allusion}>
+                    <span style={styles.allusionId}>{this.state.allusion.id}</span>
+                    <span style={styles.allusionLabel}>{"评分:"}</span>
+                    <span style={styles.probability}>{this.state.allusion.probability.toFixed(3)}</span>
                 </div>
-                <table className="wordInPoetryList">
-                    <thead>
+                <table style={styles.basicWordInPoetryList}>
+                    <thead style={styles.thead}>
                         <tr>
                             <td>标注</td>
                             <td>诗名</td>
@@ -45,13 +45,13 @@ export default class DetailsShow extends React.Component {
                     </thead>
                     <tbody>
                     {
-                        this.state.allusion.wordInPoetryList.map((poetry) => {
+                        this.state.allusion.basicWordInPoetryList.map((poetry) => {
                             return (
-                                <tr>
-                                    <td><input type="checkbox" /></td>
-                                    <td>{poetry.title}</td>
-                                    <td>{poetry.author}</td>
-                                    <td>{poetry.verse}</td>
+                                <tr style={styles.tr}>
+                                    <td style={{minWidth: 50}}><input type="checkbox" /></td>
+                                    <td style={{minWidth: 500}}>{poetry.title}</td>
+                                    <td style={{minWidth: 100}}>{poetry.author}</td>
+                                    <td style={{minWidth: 500}}>{poetry.verse}</td>
                                 </tr>
                             );
                         })
@@ -60,5 +60,41 @@ export default class DetailsShow extends React.Component {
                 </table>
             </div>
         );
+    }
+}
+
+const styles = {
+    detailsShow: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "stretch",
+        paddingLeft: 30,
+    },
+    allusion: {
+        height: 50,
+        marginTop: 10,
+    },
+    allusionId: {
+        fontSize: 25,
+        color: "green",
+        paddingRight: 10,
+        fontWeight: "bold",
+    },
+    allusionLabel: {
+
+    },
+    probability: {
+        paddingLeft: 5,
+        fontWeight: "bold",
+    },
+    thead: {
+        fontSize: 20,
+        fontWeight: "bold",
+    },
+    basicWordInPoetryList: {
+        flex: 1,
+    },
+    tr: {
+        height: 25,
     }
 }
